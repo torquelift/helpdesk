@@ -12,6 +12,7 @@
   </head>
 
   <body data-controller="shortcuts">
+    <%= torque_lift_analytics(user_id: Current.user&.id, consent: true) %>
     <% if authenticated? %>
       <div class="app">
         <%= render "layouts/sidebar" %>
