@@ -1,0 +1,19 @@
+version: 1
+app: helpdesk-rails
+app_path: "."
+scope:
+  - "app/controllers/messages_controller.rb"
+  - "app/views/tickets/**"
+user_id: {type: id, source: "Current.user.id"}
+buckets: [inbox, replies]
+pages:
+  - {route: "/", bucket: inbox}
+  - {route: "/tickets", bucket: inbox}
+  - {route: "/tickets/[id]", bucket: inbox}
+events:
+  Ticket Replied:
+    bucket: replies
+    stage: engagement
+    server: true
+    properties:
+      ticket_id: {type: id, source: "ticket.id", required: true}

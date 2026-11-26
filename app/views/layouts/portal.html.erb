@@ -11,6 +11,7 @@
   </head>
 
   <body class="portal">
+    <%= torque_lift_analytics(user_id: Current.user&.id, consent: true) %>
     <main>
       <%= render "shared/flash" %>
       <%= yield %>
